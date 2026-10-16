@@ -1,0 +1,17 @@
+[
+ {"kind": "Listing", "data": {"children": [{"kind": "t3", "data": {
+  "title": "a gallery",
+  "is_gallery": true,
+  "gallery_data": {"items": [
+   {"media_id": "bbb", "id": 2},
+   {"media_id": "aaa", "id": 1},
+   {"media_id": "ccc", "id": 3}
+  ]},
+  "media_metadata": {
+   "aaa": {"status": "valid", "e": "Image", "s": {"u": "https://i.redd.it/aaa.jpg?width=1080&format=pjpg&s=abc", "x": 1080, "y": 720}},
+   "bbb": {"status": "valid", "e": "AnimatedImage", "s": {"gif": "https://i.redd.it/bbb.gif", "mp4": "https://preview.redd.it/bbb.gif?format=mp4&s=def", "x": 480, "y": 270}},
+   "ccc": {"status": "valid", "e": "Image", "s": {"u": "https://i.redd.it/ccc.png", "x": 800, "y": 800}}
+  }
+ }}]}},
+ {"kind": "Listing", "data": {"children": []}}
+]

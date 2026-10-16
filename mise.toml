@@ -1,0 +1,22 @@
+[settings]
+# uv also reads the Python version from .python-version.
+idiomatic_version_file_enable_tools = ["python"]
+
+[tools]
+uv = "0.12.23"
+
+[tasks.lint]
+description = "Check formatting and lint rules"
+run = ["uv run ruff check .", "uv run ruff format --check ."]
+
+[tasks.typecheck]
+description = "Type-check src with mypy"
+run = "uv run mypy"
+
+[tasks.test]
+description = "Run the tests"
+run = "uv run pytest"
+
+[tasks.check]
+description = "Run lint, typecheck and test"
+depends = ["lint", "typecheck", "test"]

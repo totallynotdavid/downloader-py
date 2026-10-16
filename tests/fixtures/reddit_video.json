@@ -1,0 +1,8 @@
+[
+ {"kind": "Listing", "data": {"children": [{"kind": "t3", "data": {
+  "title": "a hosted video",
+  "post_hint": "hosted:video",
+  "media": {"reddit_video": {"fallback_url": "https://v.redd.it/example/DASH_720.mp4?source=fallback"}}
+ }}]}},
+ {"kind": "Listing", "data": {"children": []}}
+]
