@@ -1,0 +1,16 @@
+{
+ "gif": {
+  "id": "selfishawareladybug",
+  "width": 1080,
+  "height": 1920,
+  "type": 1,
+  "urls": {
+   "hd": "https://media.redgifs.com/SelfishAwareLadybug.mp4",
+   "silent": "https://media.redgifs.com/SelfishAwareLadybug-silent.mp4",
+   "html": "https://www.redgifs.com/ifr/selfishawareladybug",
+   "sd": "https://media.redgifs.com/SelfishAwareLadybug-mobile.mp4",
+   "poster": "https://media.redgifs.com/SelfishAwareLadybug-poster.jpg",
+   "thumbnail": "https://media.redgifs.com/SelfishAwareLadybug-mobile.jpg"
+  }
+ }
+}

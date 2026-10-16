@@ -1,0 +1,9 @@
+[
+ {"kind": "Listing", "data": {"children": [{"kind": "t3", "data": {
+  "title": "a link post",
+  "post_hint": "link",
+  "url": "https://example.com/article",
+  "preview": {"images": [{"source": {"url": "https://external-preview.redd.it/example.jpg?auto=webp&s=abc", "width": 1200, "height": 630}}]}
+ }}]}},
+ {"kind": "Listing", "data": {"children": []}}
+]
