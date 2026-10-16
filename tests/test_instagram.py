@@ -111,8 +111,6 @@ def test_video_url_of_a_photo_is_an_extraction_error(logged_in):
 
 
 class RefusingInstagram:
-    """Answers like a client that Instagram turns away."""
-
     def media_pk_from_url(self, url: str) -> str:
         return "3000000000000000001"
 

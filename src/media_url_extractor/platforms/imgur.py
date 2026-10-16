@@ -1,9 +1,3 @@
-"""Imgur images, videos and animations.
-
-A direct i.imgur.com link names its file, so it needs no request. A post page is
-resolved by yt-dlp, which reads only videos and animations from it.
-"""
-
 from pathlib import PurePosixPath
 from typing import Any
 from urllib.parse import urlparse

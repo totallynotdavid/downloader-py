@@ -24,11 +24,6 @@ def platform_of(url: str) -> str | None:
 
 
 def extract(url: str) -> list[Media]:
-    """Return the media of a post.
-
-    Raises ValueError for a URL that is not a supported post URL and
-    ExtractionError when the platform did not give the media.
-    """
     platform = platform_of(url)
     if platform is None:
         raise ValueError(f"Unsupported platform: {url}")

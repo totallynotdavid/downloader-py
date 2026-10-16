@@ -15,7 +15,6 @@ _STATUS_PATH = re.compile(r"/status(?:es)?/(\d+)")
 
 
 def get_media(url: str) -> list[Media]:
-    """Return the photos and videos of a post, its quoted posts and its card."""
     match = _STATUS_PATH.search(urlparse(url).path)
     if not match:
         raise ValueError(f"Not a Twitter status URL: {url}")
