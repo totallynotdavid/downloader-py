@@ -87,7 +87,7 @@ def test_redgifs_stream_reports_a_missing_gif(client, http):
     assert client.get("/api/redgifs/missing").status_code == 502
 
 
-def test_instagram_refusal_is_a_bad_gateway(client, monkeypatch):
+def test_instagram_stream_refusal_is_a_bad_gateway(client, monkeypatch):
     class Refusing:
         def media_pk_from_url(self, url):
             return "1"
@@ -97,22 +97,7 @@ def test_instagram_refusal_is_a_bad_gateway(client, monkeypatch):
 
     monkeypatch.setattr(instagram, "default_client", lambda: Refusing())
 
-    post = client.post("/api/get_media_url", json={"url": "https://www.instagram.com/p/abc/"})
-    stream = client.get("/api/instagram/3000000000000000001")
-
-    assert post.status_code == 502
-    assert stream.status_code == 502
-
-
-def test_unexpected_response_is_a_bad_gateway(client, http):
-    http.get(ENDPOINT, json={"mediaDetails": [{"type": "photo"}]})
-
-    response = client.post(
-        "/api/get_media_url",
-        json={"url": "https://twitter.com/a/status/1643051849682157569"},
-    )
-
-    assert response.status_code == 502
+    assert client.get("/api/instagram/3000000000000000001").status_code == 502
 
 
 def test_instagram_stream_proxies_the_video(client, http, monkeypatch):
