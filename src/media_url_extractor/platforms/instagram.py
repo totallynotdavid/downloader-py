@@ -1,10 +1,3 @@
-"""Read Instagram posts through instagrapi with a logged-in account.
-
-Instagram shows anonymous visitors a login wall. Credentials come from
-INSTAGRAM_USERNAME and INSTAGRAM_PASSWORD. The session is kept in
-INSTAGRAM_SESSION_FILE, which defaults to instagram_session.json.
-"""
-
 import os
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -38,9 +31,9 @@ def _instagram_errors() -> Iterator[None]:
         raise ExtractionError(f"Instagram refused the request: {exc}") from exc
 
 
-def get_media(url: str, client: InstagramApi | None = None) -> list[Media]:
+def get_media(url: str) -> list[Media]:
     with _instagram_errors():
-        api = client or default_client()
+        api = default_client()
         post = api.media_info(api.media_pk_from_url(url))
 
         if post.media_type == ALBUM:
@@ -53,9 +46,9 @@ def get_media(url: str, client: InstagramApi | None = None) -> list[Media]:
         return [item] if item else []
 
 
-def get_video_url(media_id: str, client: InstagramApi | None = None) -> str:
+def get_video_url(media_id: str) -> str:
     with _instagram_errors():
-        api = client or default_client()
+        api = default_client()
         post = api.media_info(media_id)
         if post.media_type != VIDEO or post.video_url is None:
             raise ExtractionError("The post is not a video")

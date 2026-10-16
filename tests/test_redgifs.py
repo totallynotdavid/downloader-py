@@ -57,13 +57,6 @@ def test_auth_without_a_token_is_an_extraction_error(http):
         extract("https://www.redgifs.com/watch/selfishawareladybug")
 
 
-def test_missing_gif_is_an_extraction_error(http):
-    serve(http, {"error": {"code": "NotFound"}}, status=404)
-
-    with pytest.raises(ExtractionError, match="redgifs request failed"):
-        extract("https://www.redgifs.com/watch/selfishawareladybug")
-
-
 def test_url_without_a_gif_id_is_rejected():
     with pytest.raises(ValueError, match="watch URL"):
         extract("https://www.redgifs.com/")

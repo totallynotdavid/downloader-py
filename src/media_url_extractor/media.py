@@ -16,7 +16,6 @@ class ExtractionError(Exception):
 
 @contextmanager
 def reading(source: str) -> Iterator[None]:
-    """Turn a response that lacks the expected fields into an ExtractionError."""
     try:
         yield
     except (KeyError, IndexError, TypeError, ValueError) as exc:

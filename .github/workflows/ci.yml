@@ -19,8 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
 
-      # mise.toml pins uv and defines the check task; Python comes from
-      # .python-version.
       - uses: jdx/mise-action@v5.2.0
 
       - run: uv sync --locked
