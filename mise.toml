@@ -1,13 +1,31 @@
-[settings]
-# uv also reads the Python version from .python-version.
-idiomatic_version_file_enable_tools = ["python"]
-
 [tools]
+python = "3.14.8"
 uv = "0.12.23"
+oxfmt = "0.73.0"
+
+[env]
+# uv would otherwise pick the newest Python it finds, not the one mise pins.
+UV_PYTHON_PREFERENCE = "only-system"
+
+[tasks.install]
+description = "Install the locked dependencies"
+run = "uv sync --locked"
 
 [tasks.lint]
-description = "Check formatting and lint rules"
-run = ["uv run ruff check .", "uv run ruff format --check ."]
+description = "Check formatting and lint rules, Markdown included"
+depends = ["lint:*"]
+
+[tasks."lint:py"]
+description = "Check Python with ruff"
+run = ["uv run ruff check --no-fix .", "uv run ruff format --check ."]
+
+[tasks."lint:md"]
+description = "Check Markdown, JSON, YAML and TOML formatting with oxfmt"
+run = "oxfmt --check ."
+
+[tasks.fix]
+description = "Apply safe lint fixes and format"
+run = ["uv run ruff check --fix .", "uv run ruff format .", "oxfmt ."]
 
 [tasks.typecheck]
 description = "Type-check src with mypy"
@@ -17,6 +35,10 @@ run = "uv run mypy"
 description = "Run the tests"
 run = "uv run pytest"
 
+[tasks.build]
+description = "Build the wheel and source distribution into dist/"
+run = "uv build"
+
 [tasks.check]
-description = "Run lint, typecheck and test"
-depends = ["lint", "typecheck", "test"]
+description = "Run lint, typecheck, test and build"
+depends = ["lint", "typecheck", "test", "build"]

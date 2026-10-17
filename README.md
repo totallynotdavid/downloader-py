@@ -6,12 +6,12 @@ RedGifs and Imgur. It returns links; it does not download files.
 
 ## Install
 
-You need [uv](https://docs.astral.sh/uv/). `mise install` installs the uv
-version pinned in `mise.toml` and the Python in `.python-version`, which uv
-reads too.
+You need [mise](https://mise.jdx.dev/). `mise install` installs the Python, uv
+and oxfmt versions pinned in `mise.toml`.
 
 ```sh
-uv sync
+mise install
+mise run install
 ```
 
 ## Use
@@ -107,9 +107,10 @@ Without credentials, Instagram URLs answer 502 and the other platforms work.
 mise run check
 ```
 
-`check` runs `lint` (`ruff check` and `ruff format --check`), `typecheck`
-(`mypy`) and `test` (`pytest`). Each also runs alone, for example
-`mise run test`.
+`check` runs `lint` (`ruff` for Python, `oxfmt` for Markdown), `typecheck`
+(`mypy`), `test` (`pytest`) and `build` (`uv build` into `dist/`). Each also
+runs alone, for example `mise run test`. `mise run fix` applies the safe lint
+fixes and formats the code.
 
 The tests replay recorded responses from `tests/fixtures`, so they need no
 network or account. CI runs `mise run check`.
