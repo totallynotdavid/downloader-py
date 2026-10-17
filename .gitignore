@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+dist/
 .env
 .mypy_cache/
 .ruff_cache/
