@@ -1,5 +1,6 @@
 import pytest
 from conftest import FIXTURES, load
+from yt_dlp import YoutubeDL
 
 from media_url_extractor import ExtractionError, Media, extract
 
@@ -43,6 +44,13 @@ def test_post_page_of_a_still_image_is_an_extraction_error(http):
     http.get(API, json=still)
 
     with pytest.raises(ExtractionError, match="not a video"):
+        extract("https://imgur.com/A61SaA1")
+
+
+def test_post_that_yt_dlp_returns_nothing_for_is_an_extraction_error(monkeypatch):
+    monkeypatch.setattr(YoutubeDL, "extract_info", lambda self, url, download: None)
+
+    with pytest.raises(ExtractionError, match="no media"):
         extract("https://imgur.com/A61SaA1")
 
 
