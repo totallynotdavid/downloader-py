@@ -24,13 +24,17 @@ def get_media(url: str) -> list[Media]:
 
 
 def _resolve_post(url: str) -> list[Media]:
-    options = {"quiet": True, "no_warnings": True, "skip_download": True}
     try:
-        with YoutubeDL(options) as ydl:
-            info: dict[str, Any] = ydl.sanitize_info(ydl.extract_info(url, download=False))
+        with YoutubeDL({"quiet": True, "no_warnings": True}) as ydl:
+            extracted = ydl.extract_info(url, download=False)
+            sanitized = ydl.sanitize_info(extracted) if extracted else None
     except YoutubeDLError as exc:
         raise ExtractionError(str(exc)) from exc
 
+    if sanitized is None:
+        raise ExtractionError("Imgur returned no media")
+
     with reading("Imgur"):
+        info: dict[str, Any] = dict(sanitized)
         entries = info.get("entries") or [info]
         return [Media("video", entry["url"]) for entry in entries]
